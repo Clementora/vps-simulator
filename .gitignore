@@ -1,0 +1,19 @@
+# Build directories
+build/
+bin/
+
+# CMake artifacts
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+
+# Executables & runtime caches
+VPSSimulator
+imgui.ini
+
+# IDE files
+.vscode/
+.idea/
+
+
