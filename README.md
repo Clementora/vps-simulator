@@ -53,7 +53,7 @@ The controller dynamically adjusts the simulated PCB position and heat-transfer 
 
 |                          Machine Controls & UI                         |                      Vapor Phase Thermal Simulation                      |
 | :--------------------------------------------------------------------: | :----------------------------------------------------------------------: |
-|             ![Control Panel](docs/screenshot_controls.png)             |              ![Simulation View](docs/screenshot_chamber.png)             |
+|             ![Control Panel](docs/screenshot_chamber.png)             |              ![Simulation View](docs/screenshot_controls.png)             |
 | *Interactive controls, profile parameters and live state information.* | *Real-time visualization of PCB immersion and temperature distribution.* |
 
 ---
