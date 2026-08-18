@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <iostream>
 #include "vps/physics/HeatSolver.hpp"
+#include "vps/profile/ReflowProfile.hpp"
 
 // Maps 25°C to Blue, and 230°C to Red
 ImU32 GetHeatmapColor(double temp) {
@@ -32,8 +33,14 @@ int main() {
 
     // Simulation State
     HeatSolver solver(10, PCBProps()); // 10 nodes for the PCB thickness
+    ReflowProfile profile;
+    ProfileController controller;
+
+
     bool is_running = false;
     float elevator_y = 0.0f; // 0.0 is top, 1.0 is bottom
+    double h_coeff = 5.0; // Initial convective heat transfer coefficient
+    const float dt = 0.016f; 
 
     while (!glfwWindowShouldClose(window)) {
         glfwPollEvents();
@@ -42,12 +49,10 @@ int main() {
         ImGui::NewFrame();
 
         // 1. Physics & Kinematics Step
+
+        controller.update(dt, is_running, profile, elevator_y, h_coeff);
         if (is_running) {
-            if (elevator_y < 1.0f) elevator_y += 0.002f; // Lower elevator
-            
-            // If elevator is in the bottom half, it's inside the vapor
-            double h_coeff = (elevator_y > 0.5f) ? 600.0 : 5.0; 
-            solver.step(0.016, 230.0, h_coeff); // 16ms step size
+            solver.step(dt, profile.vapor_temp, h_coeff);
         }
 
         // 2. Control Panel UI

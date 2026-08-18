@@ -22,6 +22,7 @@ set(IMGUI_SOURCES
 add_executable(${PROJECT_NAME} 
 src/main.cpp 
 src/physics/HeatSolver.cpp
+src/profile/ReflowProfile.cpp
  ${IMGUI_SOURCES})
 
 # Include directories so we can #include "imgui.h" etc
